@@ -1,0 +1,19 @@
+[bog_rich_date][mol_view] {
+	display: inline;
+}
+
+[bog_rich_date_trigger][mol_view] {
+	display: inline;
+	padding: 0;
+	min-width: 0;
+	min-height: 0;
+	color: var(--mol_theme_focus);
+	border-bottom: 1px dashed currentColor;
+	border-radius: 0;
+	white-space: inherit;
+	text-align: inherit;
+}
+
+[bog_rich_date_full][mol_view] {
+	padding: var(--mol_gap_text);
+}

@@ -1,0 +1,22 @@
+[bog_rich_spoiler][mol_view] {
+	display: inline;
+	border-radius: 0.25em;
+	background: color-mix( in srgb, currentColor 12%, transparent );
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+	transition: background-color 0.2s;
+}
+
+[bog_rich_spoiler][mol_view]:not([bog_rich_spoiler_shown="true"]) {
+	color: transparent;
+	background: repeating-linear-gradient( 45deg, var(--mol_theme_shade) 0 2px, var(--mol_theme_line) 2px 5px );
+	cursor: pointer;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+@media ( prefers-reduced-motion: reduce ) {
+	[bog_rich_spoiler][mol_view] {
+		transition: none;
+	}
+}

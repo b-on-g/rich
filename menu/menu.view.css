@@ -1,0 +1,9 @@
+[bog_rich_menu_bubble][mol_view] {
+	max-width: min( 22rem, calc( 100vw - 1rem ) );
+	max-height: 100vh;
+	overflow: auto;
+	overscroll-behavior: contain;
+	border-radius: 0.75rem;
+	user-select: none;
+	-webkit-user-select: none;
+}

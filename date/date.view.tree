@@ -1,0 +1,22 @@
+$bog_rich_date $mol_pick
+	text \
+	timestamp 0
+	format \datetime
+	hint <= full \
+	trigger_content /
+		<= label \
+	bubble_content /
+		<= Full $mol_view
+			sub /
+				<= full
+		<= Tools $mol_row
+			sub /
+				<= Copy $mol_button_copy
+					hint @ \Copy date
+					text <= full
+					title @ \Copy
+				<= Calendar $mol_button_download
+					hint @ \Download calendar event
+					file_name \event.ics
+					blob <= ics $mol_blob
+					title @ \To calendar

@@ -1,0 +1,26 @@
+$bog_rich_menu $mol_pop
+	spot? null
+	list true
+	trigger_click? null
+	escape? null
+	attr *
+		^
+		bog_rich_menu_list <= list
+	event *
+		^
+		mousedown? <=> hold? null
+		touchstart? <=> touch? null
+		touchend? <=> tap? null
+		keydown? <=> press? null
+	Anchor <= Trigger $mol_button_minor
+		hint @ \Formatting
+		click? <=> trigger_click?
+		sub /
+			<= Trigger_icon $mol_icon_format_text
+	Spot $mol_view
+		view_rect <= spot_rect null
+	Follower $mol_follower
+		offset <= bubble_offset
+		align <= bubble_align
+		Anchor <= Spot
+		Sub <= Bubble

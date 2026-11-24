@@ -1,0 +1,14 @@
+$bog_rich_quote $mol_view
+	dom_name \blockquote
+	collapsed false
+	long? false
+	content /$mol_view_content
+	attr *
+		^
+		bog_rich_quote_clamped <= clamped false
+	sub /
+		<= Text $mol_view
+			sub <= content
+		<= Toggle $mol_check_expand
+			hint @ \Expand quote
+			checked? <=> opened? false

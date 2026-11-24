@@ -1,0 +1,157 @@
+$bog_rich_edit $mol_view
+	content? null
+	enabled true
+	length_max +Infinity
+	submit? null
+	submit_with_enter false
+	paste_files? null
+	sub /
+		<= Hint $mol_view
+			sub /
+				<= hint \
+		<= Content $mol_view
+			attr *
+				^
+				contenteditable <= editable \true
+				role \textbox
+				aria-multiline \true
+				aria-label <= hint
+			event *
+				beforeinput? <=> before? null
+				input? <=> typed? null
+				compositionstart? <=> compose_start? null
+				compositionend? <=> compose_end? null
+				copy? <=> copy? null
+				cut? <=> cut? null
+				paste? <=> paste? null
+				contextmenu? <=> context? null
+			sub_visible <= drawn null
+			plugins /
+				<= Hotkey $bog_rich_hotkey
+					action <= hotkeys *
+		<= Menu $bog_rich_menu
+			showed? <=> menu_showed? false
+			spot? <=> menu_spot? null
+			list <= menu_list true
+			trigger_click? <=> menu_toggle? null
+			escape? <=> menu_close? null
+			bubble_content <= menu_content /$mol_view
+	Commands $mol_list
+		rows <= command_items /$mol_view
+		plugins /
+			<= Nav $mol_nav
+				keys_y <= command_items
+				current_y? <=> command_focused? null
+				cycle? <=> command_cycle? true
+	Command* $mol_button_minor
+		enabled <= command_enabled* true
+		click? <=> command_click*? null
+		attr *
+			^
+			role \menuitemcheckbox
+			aria-checked <= command_checked* \false
+			bog_rich_edit_state <= command_state* \off
+			bog_rich_edit_split <= command_split* false
+		sub /
+			<= Command_icon* $mol_view
+				sub <= command_icon* /$mol_view
+			<= Command_label* $mol_view
+				sub /
+					<= command_label* \
+			<= Command_key* $mol_view
+				sub /
+					<= command_key* \
+	Icon_bold $mol_icon_format_bold
+	Icon_italic $mol_icon_format_italic
+	Icon_underline $mol_icon_format_underline
+	Icon_strikethrough $mol_icon_format_strikethrough
+	Icon_blockquote $mol_icon_format_quote_close
+	Icon_code $mol_icon_code_tags
+	Icon_pre $mol_icon_code_braces
+	Icon_spoiler $mol_icon_eye_off
+	Icon_text_link $mol_icon_link
+	Icon_date_time $mol_icon_calendar_clock
+	Icon_clear $mol_icon_format_clear
+	Icon_collapse $mol_icon_chevron_down
+	Icon_leave $mol_icon_arrow_down
+	labels *
+		bold @ \Bold
+		italic @ \Italic
+		underline @ \Underline
+		strikethrough @ \Strikethrough
+		blockquote @ \Quote
+		code @ \Monospace
+		pre @ \Code
+		spoiler @ \Spoiler
+		text_link @ \Link
+		date_time @ \Date
+		clear @ \Clear formatting
+		collapse @ \Collapsible quote
+		leave @ \Exit block
+	Link_form $mol_list
+		rows /
+			<= Link_text_field $mol_form_field
+				name @ \Text
+				control <= Link_text $mol_string
+					value? <=> link_text? \
+			<= Link_url_field $mol_form_field
+				name @ \Address
+				bids /
+					<= link_bid \
+				control <= Link_url $mol_string
+					hint \https://
+					keyboard \url
+					value? <=> link_url? \
+					submit? <=> link_apply? null
+			<= Link_tools $mol_row
+				sub <= link_tools /$mol_view
+	link_wrong @ \Only web and mail addresses
+	Link_apply $mol_button_major
+		title @ \Apply
+		enabled <= link_ready false
+		click? <=> link_apply?
+	Link_remove $mol_button_minor
+		title @ \Remove link
+		click? <=> link_remove? null
+	Cancel $mol_button_minor
+		title @ \Cancel
+		click? <=> menu_close?
+	Date_form $mol_list
+		rows <= date_rows /$mol_view
+	Date_moment_field $mol_form_field
+		name @ \Date and time
+		bids /
+			<= date_bid \
+		control <= Date_moment $mol_date
+			value? <=> date_moment? \
+	Date_zone_field $mol_form_field
+		name @ \Time zone
+		control <= Date_zone $mol_select
+			options <= date_zones /string
+			value? <=> date_zone? \
+	Date_twin_field $mol_form_field
+		name @ \This time happens twice
+		control <= Date_twin $mol_switch
+			value? <=> date_twin? \0
+			options <= date_twins *
+	Date_format_field $mol_form_field
+		name @ \Format
+		control <= Date_format $mol_select
+			value? <=> date_format? \datetime
+			dictionary <= date_formats *
+	Date_text_field $mol_form_field
+		name @ \Text
+		control <= Date_text $mol_string
+			value? <=> date_text? \
+	Date_tools $mol_row
+		sub <= date_tools /$mol_view
+	Date_apply $mol_button_major
+		title @ \Apply
+		enabled <= date_ready false
+		click? <=> date_apply? null
+	Date_remove $mol_button_minor
+		title @ \Remove date
+		click? <=> date_remove? null
+	date_wrong @ \Choose date and time
+	date_missing @ \Clocks skip this time in the zone
+	date_own @ \Custom text

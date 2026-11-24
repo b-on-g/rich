@@ -1,0 +1,36 @@
+$bog_rich_render $mol_view
+	content null
+	auto_links true
+	shown_text \
+	shown_html \
+	sub <= blocks /$mol_view
+	Text* $mol_view
+		sub <= block_content* /$mol_view_content
+	Quote* $bog_rich_quote
+		collapsed <= quote_collapsed* false
+		content <= block_content*
+	Code* $bog_rich_code
+		text <= code_text* \
+		language <= code_language* \
+	Mark* $mol_view
+		dom_name <= mark_tag* \span
+		sub <= mark_content* /$mol_view_content
+	Link* $mol_link
+		uri <= link_uri* \
+		hint <= link_uri*
+		relation \noopener noreferrer
+		sub <= mark_content*
+	Auto* $mol_link
+		uri <= auto_uri* \
+		hint <= auto_uri*
+		relation \noopener noreferrer
+		sub /
+			<= auto_uri*
+	Spoiler* $bog_rich_spoiler
+		mask <= spoiler_mask* \
+		shown? <=> spoiler_shown*? false
+		content <= mark_content*
+	Date* $bog_rich_date
+		text <= date_text* \
+		timestamp <= date_timestamp* 0
+		format <= date_format* \

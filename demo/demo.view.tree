@@ -1,0 +1,30 @@
+$bog_rich_demo $mol_page
+	title \$bog_rich
+	plugins /
+		<= Theme $mol_theme_auto
+	tools /
+		<= Lights $mol_lights_toggle
+	body /
+		<= Sample $mol_list
+			rows /
+				<= Edit $bog_rich_edit
+					hint @ \Write something and select it…
+					length_max 4096
+					content? <=> content? null
+				<= View_title $mol_paragraph
+					title @ \How readers see it
+				<= View $bog_rich_render
+					content <= content?
+				<= Model_title $mol_paragraph
+					title @ \Model
+				<= Model $mol_text_code
+					text <= model_text \
+				<= Other_title $mol_paragraph
+					title @ \Independent editor, Enter submits
+				<= Other $bog_rich_edit
+					hint @ \Message…
+					submit_with_enter true
+					submit? <=> submit? null
+					content? <=> other? null
+				<= Sent $bog_rich_render
+					content <= sent? null

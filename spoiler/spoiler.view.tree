@@ -1,0 +1,17 @@
+$bog_rich_spoiler $mol_view
+	dom_name \span
+	shown? false
+	mask \
+	content /$mol_view_content
+	hidden_label @ \Hidden text, press to reveal
+	attr *
+		^
+		bog_rich_spoiler_shown <= shown
+		role <= role \button
+		tabindex <= tab \0
+		aria-label <= label \
+	event *
+		^
+		click? <=> reveal? null
+		keydown? <=> press? null
+	sub <= body /$mol_view_content

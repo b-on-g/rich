@@ -1,0 +1,27 @@
+[bog_rich_quote][mol_view] {
+	display: flex;
+	margin: 0.25rem 0;
+	padding: 0.125rem 0.25rem 0.125rem 0.625rem;
+	border-radius: 0.25rem;
+	background: color-mix( in srgb, var(--mol_theme_control) 10%, transparent );
+	box-shadow: inset 3px 0 var(--mol_theme_control);
+}
+
+[bog_rich_quote_text][mol_view] {
+	display: block;
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+[bog_rich_quote_clamped="true"] > [bog_rich_quote_text][mol_view] {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	line-clamp: 3;
+	overflow: hidden;
+}
+
+[bog_rich_quote_toggle][mol_view] {
+	align-self: flex-end;
+	flex: none;
+}
