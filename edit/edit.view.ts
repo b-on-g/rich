@@ -447,9 +447,7 @@ namespace $.$$ {
 				return
 			}
 
-			const marks = this.marks( from, to ).filter( mark => mark.type !== 'code' )
-			const own = this.typing || marks.length !== this.marks( from, to ).length
-			this.typing = own ? marks : null
+			this.typing = null
 			this.write( from, to, '\n' )
 		}
 

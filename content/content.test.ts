@@ -112,9 +112,9 @@ namespace $ {
 			$mol_assert_equal( seen( $bog_rich_replace( content, 2, 4, '' ) ), 'spoiler:1-2' )
 		},
 
-		'На правом краю продолжается начертание, но не спойлер и не ссылка'() {
+		'На краях стиль не продолжается, внутри наследуется'() {
 			const content = rich( 'ab', { type: 'bold', offset: 0, length: 2 }, { type: 'spoiler', offset: 0, length: 2 }, { ... marks.text_link, offset: 0, length: 2 } )
-			$mol_assert_equal( $bog_rich_typing( content, 2, 2 ), [ { type: 'bold' } ] )
+			$mol_assert_equal( $bog_rich_typing( content, 2, 2 ), [] )
 			$mol_assert_equal( $bog_rich_typing( content, 0, 0 ), [] )
 			$mol_assert_equal( $bog_rich_typing( content, 1, 1 ).length, 3 )
 		},

@@ -599,8 +599,7 @@ namespace $ {
 		return content.entities.filter( mark => {
 			if( block_is( mark ) || mark.type === 'date_time' ) return false
 			if( from < to ) return mark.offset <= from && end( mark ) > from
-			if( mark.offset >= from ) return false
-			return ( $bog_rich_styles as readonly string[] ).includes( mark.type ) ? end( mark ) >= from : end( mark ) > from
+			return mark.offset < from && end( mark ) > from
 		} ).map( bare )
 	}
 
